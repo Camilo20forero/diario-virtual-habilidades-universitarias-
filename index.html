@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diario Sketchbook - Habilidades Universitarias</title>
+    
+    <!-- Google Fonts: Caveat para títulos "a mano", Outfit para texto legible -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Import Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Encabezado del Cuaderno -->
+    <header class="sketchbook-header">
+      <div class="header-content">
+        <h1>Diario de Habilidades Universitarias</h1>
+        <p class="subtitle">Mi proceso y reflexiones, clase a clase</p>
+      </div>
+    </header>
+
+    <!-- Contenedor Principal: Las páginas del cuaderno -->
+    <main class="sketchbook-container">
+      
+      <!-- Controles de Filtro -->
+      <section class="controls">
+        <div class="filter-group">
+          <span class="filter-label">Filtrar por etiqueta:</span>
+          <div id="tags-container" class="tags-container">
+            <!-- Etiquetas generadas dinámicamente -->
+            <button class="tag-btn active" data-tag="all">Todas</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cuadrícula de Entradas -->
+      <section id="entries-grid" class="entries-grid">
+        <!-- Las entradas se generarán aquí desde JS -->
+      </section>
+
+    </main>
+    
+    <!-- Modal para ver el modelo 3D en pantalla completa -->
+    <div id="model-modal" class="modal hidden">
+      <div class="modal-content">
+        <button id="close-modal" class="close-btn">&times;</button>
+        <div id="modal-model-container" class="modal-model-container">
+          <!-- El model-viewer activo se insertará aquí -->
+        </div>
+        <h2 id="modal-title" class="modal-title">Título de clase</h2>
+        <p id="modal-description" class="modal-description">Descripción</p>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

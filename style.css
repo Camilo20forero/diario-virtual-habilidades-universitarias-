@@ -1,0 +1,381 @@
+/* CSS para el Diario Virtual "Sketchbook" */
+
+:root {
+  /* Colors */
+  --pk-paper-bg: #fdfaf2;
+  --pk-paper-line: #e3dcd1;
+  --pk-ink: #2b2b2b;
+  --pk-accent: #f26419; /* A nice vibrant orange for sketchbook accents */
+  --pk-accent-hover: #d15615;
+  --pk-tag-bg: #e6e6e6;
+  --pk-card-bg: #ffffff;
+  
+  /* Fonts */
+  --font-sketch: 'Caveat', cursive;
+  --font-body: 'Outfit', sans-serif;
+  
+  /* Layout */
+  --gap: 2rem;
+  --radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--pk-paper-bg);
+  background-image: 
+    linear-gradient(rgba(227, 220, 209, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(227, 220, 209, 0.4) 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: var(--pk-ink);
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+/* Header */
+.sketchbook-header {
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+}
+
+.sketchbook-header h1 {
+  font-family: var(--font-sketch);
+  font-size: 4rem;
+  color: var(--pk-ink);
+  transform: rotate(-2deg);
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+}
+
+.sketchbook-header h1::after {
+  content: '';
+  display: block;
+  width: 250px;
+  height: 4px;
+  background-color: var(--pk-accent);
+  margin: 10px auto 0;
+  border-radius: 4px;
+  transform: rotate(1deg);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  font-family: var(--font-sketch);
+  font-size: 1.8rem;
+}
+
+/* Container */
+.sketchbook-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Controls */
+.controls {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tags-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag-btn {
+  background-color: transparent;
+  border: 2px solid var(--pk-ink);
+  color: var(--pk-ink);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tag-btn:hover {
+  background-color: var(--pk-ink);
+  color: var(--pk-paper-bg);
+}
+
+.tag-btn.active {
+  background-color: var(--pk-accent);
+  border-color: var(--pk-accent);
+  color: white;
+}
+
+/* Cards / Entries Grid */
+.entries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.entry-card {
+  background-color: var(--pk-card-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 
+    4px 4px 0px rgba(0,0,0,0.1),
+    0px 0px 10px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transform: rotate(calc(calc(var(--rot, 0) * 1deg)));
+}
+
+.entry-card:nth-child(even) {
+  --rot: 1.5;
+}
+
+.entry-card:nth-child(odd) {
+  --rot: -1.5;
+}
+
+.entry-card:hover {
+  transform: translateY(-5px) scale(1.02) rotate(0deg);
+  z-index: 10;
+  box-shadow: 
+    8px 8px 0px rgba(0,0,0,0.15),
+    0px 0px 20px rgba(0,0,0,0.08);
+}
+
+.entry-header {
+  border-bottom: 2px dashed var(--pk-paper-line);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.entry-date {
+  font-family: var(--font-sketch);
+  font-size: 1.2rem;
+  color: #666;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.entry-title {
+  font-family: var(--font-sketch);
+  font-size: 2.2rem;
+  line-height: 1.1;
+  color: var(--pk-ink);
+}
+
+.entry-tags {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.tag-badge {
+  background-color: var(--pk-tag-bg);
+  color: #444;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Model Viewer Container in Card */
+.model-wrapper {
+  width: 100%;
+  height: 220px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.model-wrapper::after {
+  content: 'Click para ver en 3D';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(255,255,255,0.9);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.model-wrapper:hover::after {
+  opacity: 1;
+}
+
+/* El elemento model-viewer en sí dentro de la tarjeta */
+model-viewer.card-viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  outline: none;
+}
+
+.entry-reflection {
+  flex-grow: 1;
+}
+
+.entry-reflection h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--pk-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.entry-reflection p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+/* Image fallback */
+.entry-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  filter: grayscale(20%) contrast(110%);
+}
+
+/* Modal for 3D Viewer */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.85);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background-color: var(--pk-paper-bg);
+  width: 90%;
+  max-width: 900px;
+  height: 85vh;
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.modal.hidden .modal-content {
+  transform: translateY(20px);
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--pk-ink);
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--pk-accent);
+}
+
+.modal-model-container {
+  flex-grow: 1;
+  width: 100%;
+  background-color: #ededed;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Modal content tags */
+.modal-title {
+  font-family: var(--font-sketch);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  overflow-y: auto;
+  max-height: 150px;
+}
+
+model-viewer.full-viewer {
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sketchbook-header h1 {
+    font-size: 3rem;
+  }
+  
+  .entries-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    padding: 1rem;
+    height: 90vh;
+  }
+}
